@@ -26,7 +26,7 @@ def query(payload):
 	return response.json()
 	
 output = query({
-	"inputs": "Can you please let us know more details about your ",
+	"inputs": "Tell me how the knight moves in chess",
 })
 
 print(output)
