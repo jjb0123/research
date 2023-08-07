@@ -18,7 +18,7 @@ import pandas as pd
 import requests
 
 API_URL = "https://api-inference.huggingface.co/models/distilgpt2"
-API_TOKEN="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"
+API_TOKEN=""
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 def query(payload):
