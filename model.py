@@ -30,6 +30,24 @@ output = query({
 	"inputs": "Tell me how the knight moves in chess",
 })
 
+# Sentiment classifier 
+API_URL = "https://api-inference.huggingface.co/models/siebert/sentiment-roberta-large-english"
+headers = {"Authorization": "Bearer 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"}
+
+def query(payload):
+	response = requests.post(API_URL, headers=headers, json=payload)
+	return response.json()
+	
+output = query({
+	"inputs": "I like you. I love you",
+})
+
+print(output)
+
+
+from transformers import pipeline
+sentiment_analysis = pipeline("sentiment-analysis",model="siebert/sentiment-roberta-large-english")
+print(sentiment_analysis("I love this!"))
 #Instead of asking questions, prompt in a way that you want it to complete the rest of the sentence. 
 # Try to take the beginning of a review for example, or take the skeleton of a review 
 # To prompt a new review, give a data enrichment eg. "This is a 5 star review. Food was amazing"
