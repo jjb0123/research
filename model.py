@@ -42,7 +42,7 @@ output = query({
 	"inputs": "I like you. I love you",
 })
 
-print(output)
+
 
 #Instead of asking questions, prompt in a way that you want it to complete the rest of the sentence. 
 # Try to take the beginning of a review for example, or take the skeleton of a review 
