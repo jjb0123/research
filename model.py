@@ -2,6 +2,7 @@
 # import torch 
 # from transformers import pipeline 
 import pandas as pd
+import creds
 
 # pipe = pipeline("text-generation",model="distilgpt2")
 
@@ -18,29 +19,21 @@ import pandas as pd
 import requests
 
 API_URL = "https://api-inference.huggingface.co/models/distilgpt2"
-API_TOKEN=""
-headers = {"Authorization": f"Bearer {API_TOKEN}"}
+headers = {"Authorization": f"Bearer {creds.API_KEY_DGPT2}"}
 
 def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
 	return response.json()
+
 	
 # Don't expect conversation
+
 output = query({
 	"inputs": "Tell me how the knight moves in chess",
 })
 
-# Sentiment classifier 
-API_URL = "https://api-inference.huggingface.co/models/siebert/sentiment-roberta-large-english"
-headers = {"Authorization": "Bearer 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"}
+print(output)
 
-def query(payload):
-	response = requests.post(API_URL, headers=headers, json=payload)
-	return response.json()
-	
-output = query({
-	"inputs": "I like you. I love you",
-})
 
 
 
