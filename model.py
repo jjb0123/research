@@ -3,17 +3,8 @@
 # from transformers import pipeline 
 import pandas as pd
 import creds
+import csv 
 
-# pipe = pipeline("text-generation",model="distilgpt2")
-
-
-# #Direct Model Load 
-# from transformers import AutoTokenizer, AutoModelForCausalLM
-
-# tokenizer= AutoTokenizer.from_pretrained("distilgpt2")
-# model=AutoModelForCausalLM.from_pretrained("distilgpt2")
-
-# inputs = tokenizer("Hello my dog is cute", return_tensors="pt")
 
 
 import requests
@@ -28,11 +19,24 @@ def query(payload):
 	
 # Don't expect conversation
 
-output = query({
-	"inputs": "Tell me how the knight moves in chess",
-})
+output_array=[]
+with open('horizontallyappended.csv', 'r') as file:
+	csvreader=csv.reader(file)
+	for line in file:
+		output=query({
+			"inputs": 'Tell me how the knight moves in Chess',
+			# f"inputs: Here is a review and a sentiment score. Finish the sentence for me: {line}"
+		 })
+		output_array.append(output)
 
-print(output)
+pd.DataFrame(output_array).to_csv('ssdata1.csv')
+
+
+# output = query({
+# 	"inputs": "Tell me how the knight moves in chess",
+# })
+
+# print(output)
 
 
 
