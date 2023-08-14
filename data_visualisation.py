@@ -1,7 +1,9 @@
 import pandas as pd
-import csv 
 
-csv_files = ['sentiment_scores_2.csv', 'preprocessed.csv']
-df_csv_concat = pd.concat([pd.read_csv(file) for file in csv_files], ignore_index=True)
+files = ['sentiment_scores_2.csv', 'preprocessed.csv']
 
-print(df_csv_concat)
+df = pd.DataFrame()
+for file in files:
+    data = pd.read_csv(file)
+    df = pd.concat([df, data], axis=1)
+df.to_csv('merged_files.csv', index=False)
